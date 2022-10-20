@@ -17,7 +17,7 @@ import { debugWarn } from '@/utils/error';
 
 import type { Ref, VNode } from 'vue';
 
-const NAME = 'ElOnlyChild';
+const NAME = 'VrOnlyChild';
 
 export const OnlyChild = defineComponent({
     name: NAME,
@@ -34,13 +34,13 @@ export const OnlyChild = defineComponent({
                 debugWarn(NAME, 'requires exact only one valid child.');
                 return null;
             }
-
+            // 获取渲染节点
             const firstLegitNode = findFirstLegitChild(defaultSlot);
             if (!firstLegitNode) {
                 debugWarn(NAME, 'no valid child node found');
                 return null;
             }
-
+            // 这里返回的是虚拟节点，绑定自定义命令？
             return withDirectives(cloneVNode(firstLegitNode!, attrs), [
                 [forwardRefDirective],
             ]);
@@ -48,6 +48,7 @@ export const OnlyChild = defineComponent({
     },
 });
 
+// 找到
 function findFirstLegitChild(node: VNode[] | undefined): VNode | null {
     if (!node) return null;
     const children = node as VNode[];

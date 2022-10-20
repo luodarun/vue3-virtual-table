@@ -6,14 +6,14 @@
 import { inject, onBeforeUnmount, watch } from 'vue';
 import { useNamespace } from '@/hooks/useNamespace';
 import { POPPER_CONTENT_INJECTION_KEY } from '@/tokens';
-import { usePopperArrowProps } from './arrow';
+import { popperArrowProps } from './arrow';
 
 defineOptions({
-    name: 'PopperArrow',
+    name: 'VrPopperArrow',
     inheritAttrs: false,
 });
 
-const props = defineProps(usePopperArrowProps);
+const props = defineProps(popperArrowProps);
 
 const ns = useNamespace('popper');
 const { arrowOffset, arrowRef } = inject(

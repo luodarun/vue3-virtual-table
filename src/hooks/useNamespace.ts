@@ -1,7 +1,7 @@
 import { computed, unref } from 'vue';
 import { useGlobalConfig } from './useGlobalConfig';
 
-const defaultNamespace = 'vr';
+export const defaultNamespace = 'vr';
 const statePrefix = 'is-';
 
 // establish bem rule

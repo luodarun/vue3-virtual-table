@@ -1,2 +1,2 @@
-import '@element-plus/components/base/style';
-import '@element-plus/theme-chalk/src/popper.scss';
+import '@/components/base/style';
+import '@/styles/popper.scss';

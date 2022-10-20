@@ -1,7 +1,7 @@
 import { buildProps, definePropType } from '@/utils/props';
 import type { Measurable } from '@/tokens';
 
-export const usePopperTriggerProps = buildProps({
+export const popperTriggerProps = buildProps({
     virtualRef: {
         type: definePropType<Measurable>(Object),
     },
@@ -17,4 +17,4 @@ export const usePopperTriggerProps = buildProps({
     open: Boolean,
 } as const);
 
-export type PopperTriggerProps = typeof usePopperTriggerProps;
+export type PopperTriggerProps = typeof popperTriggerProps;

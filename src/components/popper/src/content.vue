@@ -17,17 +17,17 @@ import { createPopper } from '@popperjs/core';
 import { useNamespace } from '@/hooks/useNamespace';
 import { useZIndex } from '@/hooks/useZIndex';
 import { POPPER_CONTENT_INJECTION_KEY, POPPER_INJECTION_KEY } from '@/tokens';
-import { usePopperContentProps } from './content';
+import { popperContentProps } from './content';
 import { buildPopperOptions, unwrapMeasurableEl } from './utils';
 import type { WatchStopHandle } from 'vue';
 
 defineOptions({
-    name: 'PopperContent',
+    name: 'VrPopperContent',
 });
 
 defineEmits(['mouseenter', 'mouseleave']);
 
-const props = defineProps(usePopperContentProps);
+const props = defineProps(popperContentProps);
 
 const { popperInstanceRef, contentRef, triggerRef } = inject(
     POPPER_INJECTION_KEY,
@@ -72,7 +72,7 @@ const createPopperInstance = ({
         arrowEl,
         arrowOffset: unref(arrowOffset),
     });
-
+    // 应该是在这里计算位置
     return createPopper(referenceEl, popperContentEl, options);
 };
 

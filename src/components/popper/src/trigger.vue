@@ -15,18 +15,18 @@ import { OnlyChild } from '@/components/slot';
 import { useForwardRef } from '@/hooks/useForwardRef';
 import { POPPER_INJECTION_KEY } from '@/tokens';
 import { isElement } from '@/utils/types';
-import { usePopperTriggerProps } from './trigger';
+import { popperTriggerProps } from './trigger';
 
 defineOptions({
-    name: 'ElPopperTrigger',
+    name: 'VrPopperTrigger',
     inheritAttrs: false,
 });
 
-const props = defineProps(usePopperTriggerProps);
+const props = defineProps(popperTriggerProps);
 
 const { triggerRef } = inject(POPPER_INJECTION_KEY, undefined)!;
 
-// 给谁用？
+// 给谁用？only-child里面有用到，用来触发
 useForwardRef(triggerRef);
 
 onMounted(() => {
@@ -45,6 +45,7 @@ onMounted(() => {
     watch(
         () => triggerRef.value,
         (el, prevEl) => {
+            // 事件触发
             if (isElement(el)) {
                 (
                     [

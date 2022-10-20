@@ -26,6 +26,7 @@ export const useForwardRef = <T>(forwardRef: Ref<T | null>) => {
     });
 };
 
+// 其实就是设置forwardRef变量的值，但是又没有用到这个值
 export const useForwardRefDirective = (
     setForwardRef: ForwardRefSetter
 ): ObjectDirective => {

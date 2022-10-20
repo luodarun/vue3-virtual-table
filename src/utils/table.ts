@@ -8,7 +8,7 @@ import type {
   IPopperOptions,
   PopperInstance
 } from '../components/popper';
-import type { Nullable } from '@element-plus/utils';
+import type { Nullable } from '@/utils';
 import type { TableColumnCtx } from './table-column/defaults';
 
 export const getCell = function (event: Event): HTMLElement {
@@ -328,7 +328,7 @@ export function createTablePopper (
   function renderContent (): HTMLDivElement {
     const isLight = tooltipEffect === 'light';
     const content = document.createElement('div');
-    content.className = `el-popper ${isLight ? 'is-light' : 'is-dark'}`;
+    content.className = `vr-popper ${isLight ? 'is-light' : 'is-dark'}`;
     popperContent = escapeHtml(popperContent);
     content.innerHTML = popperContent;
     content.style.zIndex = String(nextZIndex());
@@ -337,7 +337,7 @@ export function createTablePopper (
   }
   function renderArrow (): HTMLDivElement {
     const arrow = document.createElement('div');
-    arrow.className = 'el-popper__arrow';
+    arrow.className = 'vr-popper__arrow';
     return arrow;
   }
   function showPopper () {

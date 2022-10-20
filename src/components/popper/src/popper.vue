@@ -4,13 +4,13 @@
 
 <script lang="ts" setup>
 import { provide, ref } from 'vue';
-import { POPPER_INJECTION_KEY } from '../token';
+import { POPPER_INJECTION_KEY } from '@/tokens';
 
 import type { Instance as PopperInstance } from '@popperjs/core';
-import type { ElPopperInjectionContext } from '../token';
+import type { VrPopperInjectionContext } from '@/tokens';
 
 defineOptions({
-    name: 'PopperRoot',
+    name: 'VrPopperRoot',
     inheritAttrs: false,
 });
 
@@ -36,7 +36,7 @@ const popperProvides = {
      * @description popper reference element
      */
     referenceRef,
-} as ElPopperInjectionContext;
+} as VrPopperInjectionContext;
 
 defineExpose(popperProvides);
 

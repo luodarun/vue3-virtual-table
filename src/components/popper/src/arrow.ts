@@ -2,11 +2,11 @@ import { buildProps } from '@/utils/props';
 
 import type { ExtractPropTypes } from 'vue';
 
-export const usePopperArrowProps = buildProps({
+export const popperArrowProps = buildProps({
     arrowOffset: {
         type: Number,
         default: 5,
     },
 } as const);
 
-export type UsePopperArrowProps = ExtractPropTypes<typeof usePopperArrowProps>;
+export type PopperArrowProps = ExtractPropTypes<typeof popperArrowProps>;
