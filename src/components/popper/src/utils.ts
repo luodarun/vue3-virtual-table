@@ -3,7 +3,7 @@ import { isClient, unrefElement } from '@vueuse/core';
 import type { ComponentPublicInstance } from 'vue';
 import type { MaybeRef } from '@vueuse/core';
 import type { Measurable } from '@/tokens';
-import type { UsePopperCoreConfigProps } from './content';
+import type { PopperCoreConfigProps } from './content';
 
 type ArrowProps = {
     arrowEl: HTMLElement | undefined;
@@ -11,7 +11,7 @@ type ArrowProps = {
 };
 
 export const buildPopperOptions = (
-    props: UsePopperCoreConfigProps,
+    props: PopperCoreConfigProps,
     arrowProps: ArrowProps
 ) => {
     const { placement, strategy, popperOptions } = props;
@@ -34,7 +34,8 @@ export const unwrapMeasurableEl = (
     return unrefElement($el as HTMLElement);
 };
 
-function genModifiers(options: UsePopperCoreConfigProps) {
+// 对接popper.js
+function genModifiers(options: PopperCoreConfigProps) {
     const { offset, gpuAcceleration, fallbackPlacements } = options;
     return [
         {
@@ -55,7 +56,7 @@ function genModifiers(options: UsePopperCoreConfigProps) {
             },
         },
         {
-            name: 'flip',
+            name: 'flip', // 当用来展示popper的空间不足时，将会从fallbackPlacements数组中选择新的位置,依次选择下来
             options: {
                 padding: 5,
                 fallbackPlacements: fallbackPlacements ?? [],
@@ -83,7 +84,7 @@ function attachArrow(options: any, { arrowEl, arrowOffset }: ArrowProps) {
 
 function deriveExtraModifiers(
     options: any,
-    modifiers: UsePopperCoreConfigProps['popperOptions']['modifiers']
+    modifiers: PopperCoreConfigProps['popperOptions']['modifiers']
 ) {
     if (modifiers) {
         options.modifiers = [...options.modifiers, ...(modifiers ?? [])];

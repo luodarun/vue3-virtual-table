@@ -14,17 +14,20 @@ defineOptions({
 });
 
 const props = defineProps(popperArrowProps);
-
 const ns = useNamespace('popper');
 const { arrowOffset, arrowRef } = inject(
     POPPER_CONTENT_INJECTION_KEY,
     undefined
 )!;
 
+// 箭头偏移量
 watch(
     () => props.arrowOffset,
     val => {
         arrowOffset.value = val;
+    },
+    {
+        immediate: true,
     }
 );
 onBeforeUnmount(() => {
