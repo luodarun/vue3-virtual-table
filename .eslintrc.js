@@ -6,6 +6,7 @@ module.exports = {
         node: true,
         commonjs: true,
         'vue/setup-compiler-macros': true,
+        jest: true,
     },
     globals: {
         defineOptions: false, // false: 变量只读，true: 变量支持读写
