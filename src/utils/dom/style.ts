@@ -56,8 +56,9 @@ export const setStyle = (
     if (!element || !styleName) return;
 
     if (isObject(styleName)) {
-        entriesOf(styleName).forEach(([prop, value]) =>
-            setStyle(element, prop, value)
+        entriesOf(styleName as CSSProperties).forEach(
+            ([prop, value]: [keyof CSSProperties, any]) =>
+                setStyle(element, prop, value)
         );
     } else {
         const key: any = camelize(styleName);
@@ -72,7 +73,9 @@ export const removeStyle = (
     if (!element || !style) return;
 
     if (isObject(style)) {
-        keysOf(style).forEach(prop => removeStyle(element, prop));
+        keysOf(style as CSSProperties).forEach(prop =>
+            removeStyle(element, prop)
+        );
     } else {
         setStyle(element, style, '');
     }

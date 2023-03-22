@@ -7,23 +7,23 @@ import glob from 'fast-glob';
 
 const pkgRoot = path.resolve(__dirname, 'src');
 
-const excludeFiles = (files: string[]) => {
-    const excludes = ['node_modules', 'test', 'mock', 'gulpfile', 'dist']
-    return files.filter(
-        (path) => !excludes.some((exclude) => path.includes(exclude))
-    )
-}
+// const excludeFiles = (files: string[]) => {
+//     const excludes = ['node_modules', 'test', 'mock', 'gulpfile', 'dist']
+//     return files.filter(
+//         (path) => !excludes.some((exclude) => path.includes(exclude))
+//     )
+// }
 
-async function getEntry() {
-    const input = excludeFiles(
-        await glob('**/*.{js,ts,vue}', {
-            cwd: pkgRoot,
-            absolute: true,
-            onlyFiles: true,
-        })
-    )
-    return input;
-}
+// async function getEntry() {
+//     const input = excludeFiles(
+//         await glob('**/*.{js,ts,vue}', {
+//             cwd: pkgRoot,
+//             absolute: true,
+//             onlyFiles: true,
+//         })
+//     )
+//     return input;
+// }
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => {
@@ -45,11 +45,10 @@ export default defineConfig(async () => {
         build: {
             lib: {
                 // Could also be a dictionary or array of multiple entry points
-                entry: await getEntry(),
-                name: 'MyLib',
-                // the proper extensions will be added
-                fileName: 'my-lib',
+                entry: path.resolve(__dirname, 'src/entry.ts'),
+                name: 'Vue3Popper', // 暴露的全局变量
             },
+            copyPublicDir: false,
             rollupOptions: {
                 // 确保外部化处理那些你不想打包进库的依赖
                 external: ['vue'],
@@ -61,5 +60,5 @@ export default defineConfig(async () => {
                 },
             },
         },
-    }
+    };
 });
